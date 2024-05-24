@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "autogen": "^1.0.0"
+  }
+}
