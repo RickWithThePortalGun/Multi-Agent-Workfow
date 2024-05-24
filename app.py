@@ -2,6 +2,7 @@ from autogen import ConversableAgent
 
 config_list=[{
     'model':"",
+    # Put model and api key here
     'api_key':""
 }]
 
@@ -44,12 +45,12 @@ response=user_proxy.initiate_chat(
     researcher,
     message=f'Develop ideas for teaching someone new to the subject "+{topic}"'
 )
-researcher.initiate_chat(
+response=researcher.initiate_chat(
     writer,
-    message=f'Use this idea to write a piece of text to explain topic {topic} + idea:"{response}"'
+    message=f'Use one this idea to write a piece of text to explain {topic}.  Ideas:"{response}"'
 )
 
-user_proxy.initiate_chat(
+response=writer.initiate_chat(
     examiner ,
     message=f'Crafts 2-3 test questions to evaluate understanding of this writing: {response}.'
 )
