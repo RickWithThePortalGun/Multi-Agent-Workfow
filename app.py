@@ -1,5 +1,4 @@
-from autogen import ConversableAgent
-
+import autogen
 config_list=[{
     'model':"",
     # Put model and api key here
@@ -36,6 +35,7 @@ user_proxy = autogen.UserProxyAgent(
     max_consecutive_auto_reply=10,
     is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
     llm_config=llm_config,
+    code_execution_config=False,
    system_message = "Reply TERMINATE if the task has been solved for your full satisfaction. Or reply CONTINUE if the task is not solved yet",
 )
 
@@ -43,11 +43,11 @@ topic=input("Enter a topic: ")
 
 response=user_proxy.initiate_chat(
     researcher,
-    message=f'Develop ideas for teaching someone new to the subject "+{topic}"'
+    message=f'Develop ideas for teaching someone new to the subject "{topic}"'
 )
 response=researcher.initiate_chat(
     writer,
-    message=f'Use one this idea to write a piece of text to explain {topic}.  Ideas:"{response}"'
+    message=f'Use one these ideas to write a piece of text to explain {topic}.  Ideas:"{response}"'
 )
 
 response=writer.initiate_chat(

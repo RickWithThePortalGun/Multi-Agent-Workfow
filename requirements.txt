@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "autogen": "^1.0.0"
+    "pyautogen": "^1.0.0"
   }
 }
